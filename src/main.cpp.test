@@ -1,0 +1,25 @@
+#include <Arduino.h>
+
+void setup(){
+  Serial.begin(9600);
+}
+void turnOnRelay(){ //Sends A00101A2 to turn on Relais Board
+  Serial.write(0xA0);
+  Serial.write(0x01);
+  Serial.write(0x01);
+  Serial.write(0xA2);
+  Serial.flush();
+}
+void turnOffRelay(){ //Sends A00101A1 to turn off Relais Board
+  Serial.write(0xA0);
+  Serial.write(0x01);
+  Serial.write(0x00);
+  Serial.write(0xA1);
+  Serial.flush();
+}
+void loop(){
+  turnOnRelay();
+  delay(500);
+  turnOffRelay();
+  delay(500);
+}
