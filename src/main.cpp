@@ -2,6 +2,10 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
+#include <DNSServer.h>            //Local DNS Server used for redirecting all requests to the configuration portal
+#include <ESP8266WebServer.h>     //Local WebServer used to serve the configuration portal
+#include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager WiFi Configuration Magic
+
 #define WLAN_SSID "PNet"
 #define WLAN_PASS "Vtpk2002"
 
@@ -53,24 +57,7 @@ void callback(char* topic, byte* payload, unsigned int length) {
 }
 
 void setup_wifi() {
-  WiFi.mode(WIFI_STA);
-  delay(100);
-  // We start by connecting to a WiFi network
-  Serial.println();
-  Serial.print("Connecting to ");
-  Serial.println(WLAN_SSID);
-
-  WiFi.begin(WLAN_SSID, WLAN_PASS);
-
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(500);
-    Serial.print(".");
-  }
-
-  Serial.println("");
-  Serial.println("WiFi connected");
-  Serial.println("IP address: ");
-  Serial.println(WiFi.localIP());
+wifiManager.autoConnect(); //Implemented Wifi Manager
 }
 
 void setup() {
