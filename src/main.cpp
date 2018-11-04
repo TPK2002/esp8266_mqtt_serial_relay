@@ -2,12 +2,14 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
+<<<<<<< HEAD
 #include <DNSServer.h>            //Local DNS Server used for redirecting all requests to the configuration portal
 #include <ESP8266WebServer.h>     //Local WebServer used to serve the configuration portal
 #include <WiFiManager.h>          //https://github.com/tzapu/WiFiManager WiFi Configuration Magic
-
-#define WLAN_SSID "PNet"
-#define WLAN_PASS "Vtpk2002"
+=======
+#define WLAN_SSID "SSID"
+#define WLAN_PASS "PWD"
+>>>>>>> a76890012db9f6d338ac7e8f0b0777cd78c012ec
 
 #define mqtt_server "0.0.0.0" //Fill in real mqtt ip
 
