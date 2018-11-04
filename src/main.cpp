@@ -10,6 +10,8 @@
 
 #define topicToSubscribe "vhome/patrick/light2" //MQTT Path -> Find in Icloud Notes
 
+long randNumber;
+WiFiManager wifiManager;
 WiFiClient espClient;
 PubSubClient client(espClient);
 long lastMsg = 0;
@@ -53,15 +55,13 @@ void callback(char* topic, byte* payload, unsigned int length) {
 
 }
 
-void setup_wifi() {
-wifiManager.autoConnect(); //Implemented Wifi Manager
-}
-
 void setup() {
 Serial.begin(9600);
-setup_wifi();
+wifiManager.autoConnect("Setup-ESP","ESPRuleTheWorld"); //Implemented Wifi Manager
+Serial.println("Starting AutoCOnnect");
 client.setServer(mqtt_server, 1883);
 client.setCallback(callback);
+randomSeed(analogRead(0));
 }
 
 
@@ -71,7 +71,7 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("ESP8266Client" + esp_random())) {
+    if (client.connect("ESP8266Client" + randNumber)) {
       Serial.println("connected");
       // Once connected, publish an announcement...
       client.publish("outTopic", "hello world");
