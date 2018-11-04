@@ -2,8 +2,8 @@
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
 
-#define WLAN_SSID "PNet"
-#define WLAN_PASS "Vtpk2002"
+#define WLAN_SSID "SSID"
+#define WLAN_PASS "PWD"
 
 #define mqtt_server "0.0.0.0" //Fill in real mqtt ip
 
